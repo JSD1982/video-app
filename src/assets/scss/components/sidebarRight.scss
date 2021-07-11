@@ -1,0 +1,31 @@
+.sidebar-right {
+  background-color: #f1f1f1;
+  height: 100vh;
+
+  box-shadow: none;
+  padding: 0;
+
+  &__active {
+    width: 5000px;
+    padding: 85px 10px 80px 10px;
+    overflow: auto;
+  }
+  .animate-fade-in {
+    animation-name: animateSection;
+    animation-duration: 1.5s;
+  }
+
+  @keyframes animateSection {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  .icon-close {
+    position: absolute;
+    right: 4px;
+    top: 71px;
+  }
+}

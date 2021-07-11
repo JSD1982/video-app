@@ -1,0 +1,62 @@
+//margins
+$mg1: 5px;
+$mg2: 10px;
+$mg3: 15px;
+$mg4: 20px;
+
+.MuiTypography-root,
+div,
+a,
+button {
+  &.mt-1 {
+    margin-top: $mg1;
+  }
+  &.mt-2 {
+    margin-top: $mg2;
+  }
+  &.mt-3 {
+    margin-top: $mg3;
+  }
+  &.mt-4 {
+    margin-top: $mg4;
+  }
+
+  &.mb-1 {
+    margin-bottom: $mg1;
+  }
+  &.mb-2 {
+    margin-bottom: $mg2;
+  }
+  &.mb-3 {
+    margin-bottom: $mg3;
+  }
+  &.mb-4 {
+    margin-bottom: $mg4;
+  }
+
+  &.ml-1 {
+    margin-left: $mg1;
+  }
+  &.ml-2 {
+    margin-left: $mg2;
+  }
+  &.ml-3 {
+    margin-left: $mg3;
+  }
+  &.ml-4 {
+    margin-left: $mg4;
+  }
+
+  &.mr-1 {
+    margin-right: $mg1;
+  }
+  &.mr-2 {
+    margin-right: $mg2;
+  }
+  &.mr-3 {
+    margin-right: $mg3;
+  }
+  &.mr-4 {
+    margin-right: $mg4;
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "lcms",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "homepage": "http://iebs.dev-test.com.ar/lcms-app",
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@vimeo/player": "^2.15.0",
+    "axios": "^0.19.2",
+    "node-sass": "^4.14.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.14.0",
+    "react-bottom-scroll-listener": "^4.1.0",
+    "react-dom": "^16.14.0",
+    "react-query": "^2.23.1",
+    "react-query-devtools": "^2.6.0",
+    "react-resize-detector": "^6.7.0",
+    "react-resize-panel": "^0.3.5",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "react-string-replace": "^0.4.4",
+    "react-visibility-sensor": "^5.1.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

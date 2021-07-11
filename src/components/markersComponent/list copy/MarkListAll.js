@@ -1,0 +1,207 @@
+import React from "react";
+import { Typography, IconButton, Grid, Divider, Fab } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import TurnedInIcon from "@material-ui/icons/TurnedIn";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import { DataActionsContext } from "../../../contexts/dataContext";
+import { ListItemsContext } from "../../../contexts/listItemsContext";
+import { SideBarActionsContext } from "../../../contexts/sideBarActionsContext";
+import Skeleton from "@material-ui/lab/Skeleton";
+
+const useStyles = makeStyles((theme) => ({
+  descriptionMark: {
+    overflowWrap: "break-word",
+    cursor: "pointer",
+    lineHeight: "18px",
+    position: "relative",
+    paddingLeft: "0px",
+    marginTop: "8px",
+    marginBottom: "4px",
+  },
+  ContentDescriptionMark: {
+    width: "85%",
+  },
+  timeText: {
+    position: "relative",
+    top: "-3px",
+    opacity: 0.7,
+  },
+}));
+const MarkListAll = (props) => {
+  const classes = useStyles();
+
+  const contextData = React.useContext(DataActionsContext);
+  const context = React.useContext(ListItemsContext);
+  const contextSide = React.useContext(SideBarActionsContext);
+
+  const handlehandleMarker = (subitemPosition, itemPosition, time, index) => {
+    contextSide.setAllMarkersCheck({ checked: false });
+    context.setSelectedTopic(itemPosition);
+    context.setSelectedSubtopic(subitemPosition);
+    console.log("sub", itemPosition, subitemPosition);
+    context.setActiveVideo(true);
+    contextSide.setActiveMarkerList(index);
+    contextSide.setMarkTimePosition({ time: time });
+  };
+  function secondsToHms(d) {
+    d = Number(d);
+
+    var h = Math.floor(d / 3600);
+    var m = Math.floor((d % 3600) / 60);
+    var s = Math.floor((d % 3600) % 60);
+
+    return (
+      ("0" + h).slice(-2) +
+      ":" +
+      ("0" + m).slice(-2) +
+      ":" +
+      ("0" + s).slice(-2)
+    );
+  }
+
+  return (
+    <>
+      <div className="mt-4">
+        {contextData.loadingBar ? (
+          <>
+            <Skeleton height={50} />
+            <Skeleton height={50} />
+          </>
+        ) : (
+          <div className="fadeIn-animate">
+            {props.markers && (
+              <>
+                {props.markers.length >= 0 ? (
+                  props.markers.map((marker, index) => (
+                    <div key={marker.id}>
+                      {marker.typenoteId === "video" ? (
+                        <>
+                          {props.markerAction && (
+                            <>
+                              <Grid
+                                container
+                                direction="row"
+                                justify="space-between"
+                                alignItems="center"
+                                className="mt-1 mb-1"
+                              >
+                                <Grid
+                                  item
+                                  className={classes.ContentDescriptionMark}
+                                >
+                                  <Typography
+                                    variant="body2"
+                                    className={classes.descriptionMark}
+                                    onClick={() =>
+                                      contextSide.handleMarkList(
+                                        index,
+                                        marker.time
+                                      )
+                                    }
+                                  >
+                                    {/* <TurnedInIcon
+                                    color={
+                                      contextSide.activeMarkerList === index
+                                        ? "primary"
+                                        : "secondary"
+                                    }
+                                    size="small"
+                                    className={classes.iconMark}
+                                  /> */}
+                                    {marker.contenido}
+                                  </Typography>
+                                  <Typography
+                                    variant="caption"
+                                    className={classes.timeText}
+                                  >
+                                    {secondsToHms(marker.time)}
+                                    {" - "}
+                                    {marker.nombreItem}
+                                  </Typography>
+                                </Grid>
+                                <Grid item>
+                                  <IconButton
+                                    onClick={() =>
+                                      handlehandleMarker(
+                                        marker.subitemPosition,
+                                        marker.itemPosition,
+                                        marker.time,
+                                        index
+                                      )
+                                    }
+                                    className="button muted-button mt-2"
+                                  >
+                                    <VisibilityIcon fontSize="small" />
+                                  </IconButton>
+                                </Grid>
+                              </Grid>
+
+                              <Divider />
+                            </>
+                          )}
+                        </>
+                      ) : (
+                        <div key={marker.id}>
+                          {props.noteAction && (
+                            <>
+                              <Grid
+                                container
+                                direction="row"
+                                justify="space-between"
+                                alignItems="center"
+                                className="mt-1 mb-1"
+                              >
+                                <Grid
+                                  item
+                                  className={classes.ContentDescriptionMark}
+                                >
+                                  <Typography
+                                    variant="body2"
+                                    className={classes.descriptionMark}
+                                  >
+                                    {marker.contenido}
+                                  </Typography>
+                                  <Typography
+                                    variant={"caption"}
+                                    className={classes.timeText}
+                                  >
+                                    {marker.datetime} {" - "}
+                                    {marker.nombreItem}
+                                  </Typography>
+                                </Grid>
+
+                                <Grid item>
+                                  <IconButton
+                                    onClick={() =>
+                                      handlehandleMarker(
+                                        marker.subitemPosition,
+                                        marker.itemPosition
+                                      )
+                                    }
+                                    className="button muted-button"
+                                  >
+                                    <VisibilityIcon fontSize="small" />
+                                  </IconButton>
+                                </Grid>
+                              </Grid>
+
+                              <Divider />
+                            </>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ))
+                ) : (
+                  <p>Lista de notas vacia</p>
+                )}
+              </>
+            )}
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default MarkListAll;
